@@ -1,0 +1,8 @@
+<p>home works!</p>
+@for (article of articlesList; track article.id) {<mat-card class="article-card">
+    <mat-card-title>{{ article.title }}</mat-card-title>
+    <mat-card-content>{{ article.summary | slice:0:100 }}...</mat-card-content>
+    <img src="{{article.image_url}}" alt="">
+
+</mat-card>
+}
