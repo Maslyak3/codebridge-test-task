@@ -1,8 +1,43 @@
-<p>home works!</p>
-@for (article of articlesList; track article.id) {<mat-card class="article-card">
-    <mat-card-title>{{ article.title }}</mat-card-title>
-    <mat-card-content>{{ article.summary | slice:0:100 }}...</mat-card-content>
-    <img src="{{article.image_url}}" alt="">
+<header class="header">
+  <mat-form-field class="custom-input" appearance="fill">
+    <mat-label>Filter by keywords</mat-label>
+    <img matPrefix src="assets/search.svg" alt="search icon" width="20" height="20" />
+    <input
+      matInput
+      [ngModel]="searchTerm()"
+      (ngModelChange)="searchTerm.set($event)"
+      placeholder="Enter keywords"
+    />
+  </mat-form-field>
+</header>
 
-</mat-card>
+@if(articlesList.length === 0) {
+<div class="no-articles-message">
+  <p>No articles found.</p>
+</div>
 }
+
+<div class="articles-container">
+  @for (article of articlesList; track article.id) {
+  <mat-card class="article-card">
+    <img src="{{ article.image_url }}" alt="article image" />
+    <div class="card-bottom">
+      <p>
+        <img src="assets/calendar.svg" alt="calendar logo" />
+        {{ article.published_at | date : 'MMMM d, y' }}
+      </p>
+      <div class="card-title" appHighlight [keywords]="keywords" [innerHTML]="article.title"></div>
+      <div
+        class="card-content"
+        appHighlight
+        [keywords]="keywords"
+        [innerHTML]="article.summary | slice : 0 : 120"
+      ></div>
+      <button [routerLink]="['/article', article.id]" class="read-more-button">
+        Read more
+        <img src="assets/arrow2.svg" alt="arrow" class="button-icon" />
+      </button>
+    </div>
+  </mat-card>
+  }
+</div>

@@ -1,1 +1,13 @@
-<p>article works!</p>
+<div class="card-container">
+    <header>
+        <img src="{{article.image_url}}" alt="aticle image">
+    </header>
+    <div class="article-text">
+        <h2>{{article.title}}</h2>
+        <p>{{article.summary}}</p>
+    </div>
+    <button class="back-button" [routerLink]="'/'">
+        <img src="assets/arrow.svg" alt="arrow" class="button-icon">
+        Back to homepage</button>
+    
+</div>
