@@ -17,14 +17,21 @@ $font-main: Montserrat;
 }
 
 .articles-container {
-  @include responsive-grid(3);
+  display: grid;
+  gap: 20px;
+  margin: 0 auto;
+  padding: 20px;
 
-  @media (max-width: 1024px) {
-    @include responsive-grid(2);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (max-width: 1240px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   @media (max-width: 600px) {
-    @include responsive-grid(1);
+    grid-template-columns: 1fr;
   }
 }
 
