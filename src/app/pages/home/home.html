@@ -1,13 +1,29 @@
 <header class="header">
   <mat-form-field class="custom-input" appearance="fill">
     <mat-label>Filter by keywords</mat-label>
-    <img matPrefix src="assets/search.svg" alt="search icon" width="20" height="20" />
+    <img
+      matPrefix
+      src="assets/search.svg"
+      alt="search icon"
+      width="20"
+      height="20"
+      style="margin: 5px"
+    />
     <input
       matInput
       [ngModel]="searchTerm()"
       (ngModelChange)="searchTerm.set($event)"
       (keydown.enter)="searchArticles()"
       placeholder="Enter keywords"
+    />
+    <img
+      matSuffix
+      src="assets/clear.png"
+      alt="clear icon"
+      width="30"
+      height="30"
+      (click)="renderFullListOfArticles()"
+      style="cursor: pointer; margin-right: 5px"
     />
   </mat-form-field>
 </header>
@@ -16,9 +32,13 @@
 <div class="no-articles-message">
   <p>No articles found.</p>
 </div>
+} @if(loading === true) {
+<div class="loading-spinner">
+  <mat-spinner></mat-spinner>
+</div>
 }
 
-<div class="articles-container">
+<div class="articles-container" [class.overlay]="loading">
   @for (article of articlesList; track article.id) {
   <mat-card class="article-card">
     <img src="{{ article.image_url }}" alt="article image" />
