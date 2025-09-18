@@ -1,58 +1,62 @@
+$main-color: #363636;
+$text-color: #000;
+$font-main: Montserrat;
+$radius: 5px;
+$shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
 header {
-    height: 245px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  header img {
+  height: 245px;
+  position: relative;
+  overflow: hidden;
+
+  img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+}
 
-  .article-text {
-    position: relative;
-    background: white;
-    padding-left: 75px;
-    padding-right: 75px;
-    padding-top: 35px;
-    margin: -95px 20px 0 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+.article-text {
+  position: relative;
+  background: white;
+  padding: 35px 75px 0 75px;
+  margin: -95px 20px 0 20px;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  z-index: 10;
+
+  h2 {
+    margin-bottom: 50px;
+    color: $main-color;
+    font-family: $font-main;
+    font-size: 24px;
+    font-weight: 400;
   }
-    .article-text h2 {
-        margin-bottom: 50px;
-        color: #363636;
-        font-family: Montserrat;
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-    .article-text p {
-        color: #000;
-        font-family: Montserrat;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 150%;
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-    }
 
-    .back-button {
-        background-color: white;
-        border: white;
-        margin-left: 30px;
-        cursor: pointer;
-    }
+  p {
+    color: $text-color;
+    font-family: $font-main;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+  }
+}
 
-    .article-card p {
-      color: #363636;
-      font-family: Montserrat;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 150%;
-    }
+.back-button {
+  background-color: white;
+  border: white;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.article-card {
+  p {
+    color: $main-color;
+    font-family: $font-main;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+  }
+}

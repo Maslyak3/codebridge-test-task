@@ -39,11 +39,11 @@ export class HomeComponent implements OnInit {
     effect(() => {
       const term = this.searchTerm();
       this.keywords = term.split(/\s+/).filter((k) => k.length > 0);
-      if (this.keywords.length > 0) {
-        this.searchArticles(this.keywords);
-      } else {
-        this.getFullListOfArticles();
-      }
+      // if (this.keywords.length > 0) {
+      //   this.searchArticles(this.keywords);
+      // } else {
+      //   this.getFullListOfArticles();
+      // }
     });
   }
 
@@ -57,7 +57,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  searchArticles(keywords: string[]): void {
+  searchArticles(): void {
+    const keywords = this.keywords;
     forkJoin({
       byTitle: this.articlesService.getArticlesByKeyWordInTitle(keywords),
       bySummary: this.articlesService.getArticlesByKeyWordInSummary(keywords),
@@ -73,7 +74,6 @@ export class HomeComponent implements OnInit {
       } else {
         this.articlesList = [];
       }
-      console.log(this.articlesList);
     });
   }
 }

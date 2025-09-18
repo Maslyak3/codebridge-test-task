@@ -15,23 +15,17 @@ export class HighlightDirective implements OnChanges {
 
   constructor(private el: ElementRef<HTMLElement>) {}
   ngOnChanges(): void {
-    const originalText = this.el.nativeElement.innerText;
-    const text = originalText.toLowerCase();
+    const text = this.el.nativeElement.textContent || '';
 
-    if (this.keywords.length > 0) {
-      this.keywords.forEach((keyword) => {
-        const lowerKeyword = keyword.toLowerCase();
-
-        const highlightedText = text.replaceAll(
-          lowerKeyword,
-          `<span style="background-color: yellow">${lowerKeyword}</span>`
-        );
-        console.log(highlightedText);
-
-        this.el.nativeElement.innerHTML = highlightedText;
-      });
-    } else {
-      this.el.nativeElement.innerHTML = this.el.nativeElement.innerText;
+    if (!this.keywords.length) {
+      this.el.nativeElement.innerHTML = text;
+      return;
     }
+    const regex = new RegExp(`(${this.keywords.join('|')})`, 'gi');
+
+    this.el.nativeElement.innerHTML = text.replace(
+      regex,
+      `<span style="background-color: yellow">$1</span>`
+    );
   }
 }

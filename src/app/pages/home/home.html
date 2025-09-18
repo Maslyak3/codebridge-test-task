@@ -6,6 +6,7 @@
       matInput
       [ngModel]="searchTerm()"
       (ngModelChange)="searchTerm.set($event)"
+      (keydown.enter)="searchArticles()"
       placeholder="Enter keywords"
     />
   </mat-form-field>

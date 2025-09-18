@@ -19,7 +19,6 @@ export class FetchArticlesService {
 
   getArticleById(id: number): Observable<Article> {
     return this.http.get<Article>(`${this.API_URL}${id}/`);
-    console.log(id);
   }
 
   getArticlesByKeyWordInTitle(keywords: string[]) {
